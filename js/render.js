@@ -25,7 +25,7 @@
   function sizeSpan(p) {
     const ws = p.sizes.map(s => s[0]), hs = p.sizes.map(s => s[1]);
     const a = p.sizes[0], b = p.sizes[p.sizes.length - 1];
-    return { from: `${a[0]}×${a[1]}″`, to: `${b[0]}×${b[1]}″`, minW: Math.min(...ws), maxH: Math.max(...hs) };
+    return { from: `${a[0]}×${a[1]}`, to: `${b[0]}×${b[1]} cm`, minW: Math.min(...ws), maxH: Math.max(...hs) };
   }
 
   function products(lang, base) {
@@ -67,8 +67,8 @@
     lang = lang || "es"; base = base || "";
     const t = T[lang];
     return D.SIZE_GUIDE.map(s => `<tr>
-  <td><strong>${s.w} × ${s.h}″</strong></td>
-  <td>${D.inToCm(s.w)} × ${D.inToCm(s.h)} cm</td>
+  <td><strong>${s.w} × ${s.h} cm</strong></td>
+  <td>${D.cmToIn(s.w)} × ${D.cmToIn(s.h)}″</td>
   <td>${esc(s[lang])}</td>
   <td><a class="link-try" href="${base}?w=${s.w}&amp;h=${s.h}#disena" data-size="${s.w}x${s.h}">${t.tryIt} →</a></td>
 </tr>`).join("\n");

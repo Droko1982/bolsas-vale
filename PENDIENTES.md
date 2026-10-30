@@ -10,7 +10,8 @@
 - [ ] Redes sociales (Instagram, Facebook, TikTok) → `js/config.js` (`social`).
 
 ## Para confirmar con producción
-- [ ] **Unidades de medida**: el sitio asume que "6×11 a 20×30" está en **pulgadas** (≈ 15×28 a 51×76 cm).
+- [x] **Unidades**: confirmado en **centímetros**. Línea estándar 6×11 a 20×30 cm; lo demás se cotiza como "medida especial".
+- [ ] Confirmar las medidas de cada tipo (`sizes` en `js/data.js`), sobre todo TNT, papel e industriales (bolsas de basura suelen ser más grandes).
 - [ ] **Pedidos mínimos** de referencia por tipo (`min` en `js/data.js`): 1.000 plásticas, 200 TNT, 300 papel.
 - [ ] **Tiempos**: producción 8–15 días hábiles; entrega por zonas (`ZONES` y `PRODUCTION` en `js/data.js`).
 - [ ] Calibres, gramajes y colores disponibles por tipo de bolsa.

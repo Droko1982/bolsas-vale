@@ -7,8 +7,8 @@ Eje Cafetero (Quindío, Risaralda, Caldas, norte del Valle y Tolima).
 
 ## Qué incluye
 
-- **Diseñador y cotizador en línea** (`#disena`): 8 tipos de bolsa, medidas de 6×11 a 20×30″
-  (con cm), color, calibre o gramaje, tintas, logo del cliente (quita el fondo blanco y simula
+- **Diseñador y cotizador en línea** (`#disena`): 8 tipos de bolsa, medidas de 6×11 a 20×30 cm
+  (con equivalencia en pulgadas y campo de medida especial), color, calibre o gramaje, tintas, logo del cliente (quita el fondo blanco y simula
   la impresión a 1–2 tintas), textos, cantidad y ciudad de entrega con tiempos. Genera un código
   de referencia y envía todo por **WhatsApp** o correo, descarga el **boceto PNG** y lo comparte
   desde el celular.

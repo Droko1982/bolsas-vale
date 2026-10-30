@@ -25,7 +25,7 @@
       rec_q: "¡Con gusto! ¿Qué tipo de negocio tienes?",
       rec_a: "Para *{sector}* te recomiendo:",
       design_x: "Diseñar {p}",
-      size_a: "Fabricamos desde *6 × 11* hasta *20 × 30 pulgadas* (≈ 15 × 28 cm a 51 × 76 cm).\n\n• 6×11 – 8×12: joyería, cosméticos, droguería\n• 10×14 – 12×16: ropa, domicilios\n• 14×18 – 16×20: calzado, mercado\n• 18×24 – 20×30: artículos grandes, industrial\n\nEn el diseñador ves tu bolsa a escala junto a una hoja carta y un celular 📐",
+      size_a: "Nuestra línea estándar va desde *6 × 11* hasta *20 × 30 cm* (ancho × alto).\n\n• 6×11 – 8×12 cm: joyería, accesorios, celulares\n• 10×15 – 12×18 cm: droguería, cosméticos, panadería\n• 15×20 – 16×24 cm: perfumería, comidas, regalos\n• 18×26 – 20×30 cm: ropa doblada, domicilios\n\n¿Necesitas una bolsa más grande? La cotizamos como *medida especial*. En el diseñador ves tu bolsa a escala junto a una hoja carta y un celular 📐",
       min_a: "El precio depende del *tipo de bolsa, la medida, el calibre, las tintas y la cantidad*: entre más unidades, mejor precio por bolsa 💪\n\nMínimos de referencia:\n• Plásticas impresas: desde *1.000* und.\n• Ecológicas TNT: desde *200* und.\n• Papel: desde *300* und.\n\nArma tu bolsa en el diseñador y te enviamos la cotización exacta.",
       ship_q: "¿A qué ciudad o departamento enviamos? Escríbela o elige una 👇",
       ship_city: "📍 *{city}*: {eta}.\nLa producción toma aprox. 8–15 días hábiles después de aprobar el boceto.",
@@ -60,7 +60,7 @@
       rec_q: "Happy to help! What kind of business do you have?",
       rec_a: "For *{sector}* I recommend:",
       design_x: "Design {p}",
-      size_a: "We make bags from *6 × 11* up to *20 × 30 inches* (≈ 15 × 28 cm to 51 × 76 cm).\n\n• 6×11 – 8×12: jewelry, cosmetics, pharmacy\n• 10×14 – 12×16: clothing, delivery\n• 14×18 – 16×20: shoes, groceries\n• 18×24 – 20×30: bulky items, industrial\n\nThe designer shows your bag to scale next to a letter sheet and a phone 📐",
+      size_a: "Our standard line goes from *6 × 11* up to *20 × 30 cm* (width × height).\n\n• 6×11 – 8×12 cm: jewelry, accessories, phones\n• 10×15 – 12×18 cm: pharmacy, cosmetics, bakery\n• 15×20 – 16×24 cm: fragrance, take-out, gifts\n• 18×26 – 20×30 cm: folded clothing, delivery\n\nNeed a larger bag? We quote it as a *custom size*. The designer shows your bag to scale next to a letter sheet and a phone 📐",
       min_a: "Price depends on *bag type, size, gauge, inks and quantity*: the more units, the better the price per bag 💪\n\nReference minimums:\n• Printed plastic: from *1,000* pcs\n• Non-woven: from *200* pcs\n• Paper: from *300* pcs\n\nBuild your bag in the designer and we'll send the exact quote.",
       ship_q: "Which city or department should we ship to? Type it or pick one 👇",
       ship_city: "📍 *{city}*: {eta}.\nProduction takes about 8–15 business days after proof approval.",
@@ -196,7 +196,7 @@
     [/\b(precio|precios|cuanto|valor|cuesta|costo|price|cost|how much)/, () => bot(t("min_a"), [designBtn(), waBtn()])],
     [/\b(minimo|minima|cantidad|unidades|minimum|quantity)/, () => bot(t("min_a"), [designBtn(), waBtn()])],
     [/\b(boceto|prueba|aprobar|proof)/, () => bot(t("proof_a"), [designBtn(), backBtn()])],
-    [/\b(medida|medidas|tamano|tamanos|pulgada|grande|pequen|size|inch)/, () => bot(t("size_a"), [designBtn(), backBtn()])],
+    [/\b(medida|medidas|tamano|tamanos|pulgada|centimetro|cm|grande|pequen|size|inch)/, () => bot(t("size_a"), [designBtn(), backBtn()])],
     [/\b(envio|envian|envios|despach|llega|demora|tarda|entrega|domicilio|ship|deliver)/, shipAsk],
     [/\b(logo|diseno|archivo|imagen|arte|vector|design|file|artwork)/, () => bot(t("design_a"), [designBtn(), waBtn()])],
     [/\b(ley|2232|prohib|ambient|reutiliz|law|ban|reusable)/, law],
@@ -234,7 +234,7 @@
     if (pk) {
       const p = D.product(pk[1]), a = p.sizes[0], b = p.sizes[p.sizes.length - 1];
       ctx.product = p[L()].name;
-      return bot(t("product_a", { p: p[L()].name, d: p[L()].desc, from: `${a[0]}×${a[1]}″`, to: `${b[0]}×${b[1]}″` }), [designBtn(p.id), waBtn(), backBtn()]);
+      return bot(t("product_a", { p: p[L()].name, d: p[L()].desc, from: `${a[0]}×${a[1]}`, to: `${b[0]}×${b[1]} cm` }), [designBtn(p.id), waBtn(), backBtn()]);
     }
     bot(t("fallback"), [waBtn(), backBtn()]);
   }

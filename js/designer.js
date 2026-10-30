@@ -22,7 +22,7 @@
           logo: "Logo", text: "Texto", qty: "Cantidad", city: "Entrega en", none: "—", attach: "lo adjunto en el chat",
           title: "🛍️ Cotización Plásticos JR", ref: "Ref.", inches: "pulgadas", hello: "¡Hola Plásticos JR! Quiero cotizar esta bolsa:",
           bigFile: "El archivo pesa más de 10 MB. Envíalo directamente por WhatsApp o correo.", noPreview: "Recibimos este formato; la vista previa no está disponible, pero lo adjuntas al enviar.",
-          copied: "Resumen copiado. Pégalo en WhatsApp o en tu correo.", proof: "Boceto de referencia · los colores pueden variar en impresión",
+          copied: "Resumen copiado. Pégalo en WhatsApp o en tu correo.", special: "Medida especial", proof: "Boceto de referencia · los colores pueden variar en impresión",
           other: "Otras regiones", featured: "Eje Cafetero y alrededores", choose: "Elige tu ciudad", subject: "Cotización de bolsas" },
     en: { custom: "Custom", fits: "Great for", equiv: "equals", cal: "Gauge (thickness)", gram: "Fabric weight", rec: "recommended",
           units: "units", min: "reference minimum", prod: "Production", ship: "Shipping", type: "Type", size: "Size", color: "Color",
@@ -30,16 +30,16 @@
           logo: "Logo", text: "Text", qty: "Quantity", city: "Deliver to", none: "—", attach: "I'll attach it in the chat",
           title: "🛍️ Plásticos JR quote", ref: "Ref.", inches: "inches", hello: "Hi Plásticos JR! I'd like a quote for this bag:",
           bigFile: "This file is over 10 MB. Please send it directly via WhatsApp or email.", noPreview: "We accept this format; preview isn't available, but attach it when you send.",
-          copied: "Summary copied. Paste it in WhatsApp or your email.", proof: "Reference proof · printed colors may vary",
+          copied: "Summary copied. Paste it in WhatsApp or your email.", special: "Custom size", proof: "Reference proof · printed colors may vary",
           other: "Other regions", featured: "Coffee Region & nearby", choose: "Choose your city", subject: "Bag quote" }
   };
   const t = k => S[L()][k];
   const num = n => Number(n).toLocaleString(L() === "en" ? "en-US" : "es-CO");
 
   /* ---------- estado ---------- */
-  const saved = store.get("bv-design") || {};
+  const saved = store.get("bv-design-cm") || {};
   const st = Object.assign({
-    type: "troquelada", w: 12, h: 16, units: "in", color: "fucsia", handle: "", cal: "3", print: 1,
+    type: "troquelada", w: 16, h: 24, units: "cm", special: "", color: "fucsia", handle: "", cal: "3", print: 1,
     ink1: "blanco", ink2: "amarillo", sides: 1, text1: "", text2: "", qty: 1000, city: "Armenia, Quindío", dims: true
   }, saved);
   st.logo = { src: "", fileName: "", scale: 0.62, y: 0, color: false, white: true };
@@ -53,8 +53,8 @@
   if (q.get("w") && q.get("h")) { st.w = clampW(+q.get("w")); st.h = clampH(+q.get("h")); }
   if (q.get("ciudad")) { const c = D.cityBySlug(q.get("ciudad")); if (c) st.city = `${c.name}, ${D.dept(c.dept).name}`; }
 
-  function clampW(v) { return Math.min(D.SIZE_RANGE.maxW, Math.max(D.SIZE_RANGE.minW, v || 12)); }
-  function clampH(v) { return Math.min(D.SIZE_RANGE.maxH, Math.max(D.SIZE_RANGE.minH, v || 16)); }
+  function clampW(v) { return Math.min(D.SIZE_RANGE.maxW, Math.max(D.SIZE_RANGE.minW, v || 16)); }
+  function clampH(v) { return Math.min(D.SIZE_RANGE.maxH, Math.max(D.SIZE_RANGE.minH, v || 24)); }
   const P = () => D.product(st.type);
 
   function applyType(id, quiet) {
@@ -87,7 +87,7 @@
   };
 
   function fmtSize(w, h) {
-    return st.units === "cm" ? `${D.inToCm(w)} × ${D.inToCm(h)} cm` : `${w} × ${h}″`;
+    return st.units === "in" ? `${D.cmToIn(w)} × ${D.cmToIn(h)}″` : `${w} × ${h} cm`;
   }
   function swatch(key, def, on, group) {
     const chk = def.clear || B.lum(def.hex) > 0.7 ? "#0E1530" : "#fff";
@@ -146,14 +146,14 @@
     const p = P();
     $$(".type-opt", el.type).forEach(b => { const on = b.dataset.type === st.type; b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", on); });
     el.wR.value = st.w; el.hR.value = st.h;
-    el.wO.textContent = st.units === "cm" ? `${D.inToCm(st.w)} cm` : `${st.w}″`;
-    el.hO.textContent = st.units === "cm" ? `${D.inToCm(st.h)} cm` : `${st.h}″`;
+    el.wO.textContent = st.units === "in" ? `${D.cmToIn(st.w)}″` : `${st.w} cm`;
+    el.hO.textContent = st.units === "in" ? `${D.cmToIn(st.h)}″` : `${st.h} cm`;
     $$("[data-units]").forEach(b => b.classList.toggle("is-on", b.dataset.units === st.units));
     $$("[data-size]", el.sizes).forEach(b => { const [w, h] = b.dataset.size.split("x").map(Number); b.classList.toggle("is-on", w === st.w && h === st.h); });
     // pista de uso
     let best = D.SIZE_GUIDE[0], bd = 1e9;
     D.SIZE_GUIDE.forEach(g => { const d = Math.abs(g.w - st.w) + Math.abs(g.h - st.h) * 0.6; if (d < bd) { bd = d; best = g; } });
-    el.hint.innerHTML = `${st.w} × ${st.h}″ ${t("equiv")} <b>${D.inToCm(st.w)} × ${D.inToCm(st.h)} cm</b> · ${t("fits")}: ${best[L()].toLowerCase()}`;
+    el.hint.innerHTML = `${st.w} × ${st.h} cm ${t("equiv")} <b>${D.cmToIn(st.w)} × ${D.cmToIn(st.h)}″</b> · ${t("fits")}: ${best[L()].toLowerCase()}`;
     $$("[data-color]", el.colors).forEach(b => { const on = b.dataset.color === st.color; b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", on); });
     el.colorName.textContent = (D.COLORS[st.color] || {})[L()] || "";
     $$("[data-handle]", el.handles).forEach(b => b.classList.toggle("is-on", b.dataset.handle === (st.handle || st.color)));
@@ -172,6 +172,7 @@
     el.dims.checked = st.dims;
     if (el.text1.value !== st.text1) el.text1.value = st.text1;
     if (el.text2.value !== st.text2) el.text2.value = st.text2;
+    const sp = $("#specialSize"); if (sp && document.activeElement !== sp && sp.value.trim() !== (st.special || "")) sp.value = st.special || "";
     if (el.city.value !== st.city) el.city.value = st.city;
     // tiempos
     const z = zoneOf(st.city);
@@ -194,11 +195,12 @@
       [st.ink1, st.print >= 2 ? st.ink2 : null].filter(Boolean).map(k => D.INKS[k][lg]).join(" + ") + (st.print === 3 ? " + 1" : "");
     const r = [
       [t("type"), p[lg].name],
-      [t("size"), `${st.w} × ${st.h}″ (${D.inToCm(st.w)} × ${D.inToCm(st.h)} cm)`],
+      [t("size"), `${st.w} × ${st.h} cm (${D.cmToIn(st.w)} × ${D.cmToIn(st.h)}″)`],
       [t("color"), col + (p.shape === "lazo" && st.handle && st.handle !== st.color ? ` · ${t("handle")}: ${D.COLORS[st.handle][lg]}` : "")],
       [p.calLabel ? t("gramS") : t("calS"), st.cal],
       [t("print"), D.PRINT[st.print][lg] + (st.print ? ` · ${st.sides === 2 ? t("side2") : t("side1")}` : "")]
     ];
+    if (st.special) r.splice(2, 0, [t("special"), st.special]);
     if (inks) r.push([t("inks"), inks]);
     if (st.text1 || st.text2) r.push([t("text"), [st.text1, st.text2].filter(Boolean).join(" / ")]);
     if (st.logo.fileName) r.push([t("logo"), st.logo.fileName]);
@@ -226,7 +228,7 @@
       el.wa.href = app ? app.waUrl(msg) : "#";
       el.mail.href = app ? app.mailUrl(`${t("subject")} · ${st.ref}`, summaryText()) : "#";
       const { logo, file, ...keep } = st;
-      store.set("bv-design", keep);
+      store.set("bv-design-cm", keep);
     });
   }
 
@@ -328,6 +330,7 @@
   el.hR.addEventListener("input", () => { st.h = +el.hR.value; render(); });
   el.text1.addEventListener("input", () => { st.text1 = el.text1.value; render(); });
   el.text2.addEventListener("input", () => { st.text2 = el.text2.value; render(); });
+  $("#specialSize").addEventListener("input", e => { st.special = e.target.value.trim(); render(); });
   el.qtyIn.addEventListener("input", () => { const v = parseInt(el.qtyIn.value, 10); if (v > 0) { st.qty = v; render(); } });
   el.city.addEventListener("change", () => { st.city = el.city.value; render(); });
   el.dims.addEventListener("change", () => { st.dims = el.dims.checked; render(); });

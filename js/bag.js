@@ -37,9 +37,9 @@
 
   /* ==========================================================================
      render(opts)
-     opts: shape, w, h (pulgadas), color (clave), handle (clave), print (0-4),
+     opts: shape, w, h (centímetros), color (clave), handle (clave), print (0-4),
            ink1, ink2 (claves), logo {src, scale, y}, text1, text2,
-           dims (bool), units ('in'|'cm'), id (prefijo único), bg (color export), lang
+           dims (bool), units ('cm'|'in'), id (prefijo único), bg (color export), lang
      ========================================================================== */
   function render(o) {
     const p = o.id || "bv";
@@ -60,7 +60,7 @@
     const print = o.print == null ? 1 : o.print;
 
     const [ew, eh] = EXTRA[shape] || [1, 0];
-    const aspect = Math.max(0.25, (o.w || 12) / (o.h || 16));
+    const aspect = Math.max(0.25, (o.w || 16) / (o.h || 24));
     // dimensiones en unidades "alto del cuerpo = 1"
     const figW = aspect * ew, figH = 1 + eh;
     const s = Math.min(MAXW / figW, MAXH / figH);
@@ -254,8 +254,8 @@
     /* ---------- cotas ---------- */
     let dims = "";
     if (o.dims) {
-      const u = o.units === "cm";
-      const wl = u ? `${D.inToCm(o.w)} cm` : `${o.w}″`, hl = u ? `${D.inToCm(o.h)} cm` : `${o.h}″`;
+      const u = o.units === "in";
+      const wl = u ? `${D.cmToIn(o.w)}″` : `${o.w} cm`, hl = u ? `${D.cmToIn(o.h)}″` : `${o.h} cm`;
       const bx = (shape === "rollo" || shape === "plana") ? X : X, by = (shape === "rollo" || shape === "plana") ? Y : (shape === "camiseta" || shape === "troquelada" || shape === "basura" ? Y0 : Y);
       const bh = BASE - by;
       const dc = "currentColor";
@@ -274,15 +274,15 @@
      compare(w, h, lang): bolsa vs. hoja carta y celular, a la misma escala
      ========================================================================== */
   function compare(w, h, lang, units) {
-    const en = lang === "en", cm = units === "cm";
-    const VBW = 380, VBH = 296, base = 236, gap = 1.1;
-    const sheet = [8.5, 11], phone = [3, 6.2];
+    const en = lang === "en", inch = units === "in";
+    const VBW = 380, VBH = 296, base = 236, gap = 2.6;
+    const sheet = [21.6, 27.9], phone = [7.5, 15.5];
     const totalW = w + gap + sheet[0] + gap + phone[0];
     const s = Math.min((VBW - 30) / totalW, 200 / Math.max(h, sheet[1]));
     let x = 15;
     const lab = (cx, txt, sub) => `<text x="${f1(cx)}" y="${base + 22}" text-anchor="middle" font-size="17" font-weight="800" fill="currentColor">${txt}</text>
       <text x="${f1(cx)}" y="${base + 42}" text-anchor="middle" font-size="14" fill="currentColor" opacity=".7">${sub}</text>`;
-    const meas = (a, b) => cm ? `${D.inToCm(a)} × ${D.inToCm(b)} cm` : `${a} × ${b}″`;
+    const meas = (a, b) => inch ? `${D.cmToIn(a)} × ${D.cmToIn(b)}″` : `${a} × ${b} cm`;
     let out = `<line x1="8" y1="${base}" x2="${VBW - 8}" y2="${base}" stroke="currentColor" stroke-opacity=".25"/>`;
     // bolsa
     out += `<rect x="${f1(x)}" y="${f1(base - h * s)}" width="${f1(w * s)}" height="${f1(h * s)}" rx="3" fill="var(--brand)" fill-opacity=".16" stroke="var(--brand)" stroke-width="2"/>`;
@@ -291,12 +291,12 @@
     // hoja carta
     out += `<rect x="${f1(x)}" y="${f1(base - sheet[1] * s)}" width="${f1(sheet[0] * s)}" height="${f1(sheet[1] * s)}" fill="none" stroke="currentColor" stroke-opacity=".7" stroke-width="1.5" stroke-dasharray="5 4"/>
       <path d="M${f1(x + sheet[0] * s * 0.18)} ${f1(base - sheet[1] * s * 0.82)}h${f1(sheet[0] * s * 0.64)}M${f1(x + sheet[0] * s * 0.18)} ${f1(base - sheet[1] * s * 0.72)}h${f1(sheet[0] * s * 0.5)}M${f1(x + sheet[0] * s * 0.18)} ${f1(base - sheet[1] * s * 0.62)}h${f1(sheet[0] * s * 0.58)}" stroke="currentColor" stroke-opacity=".3" stroke-width="2"/>`;
-    out += lab(x + (sheet[0] * s) / 2, en ? "Letter sheet" : "Hoja carta", cm ? "22 × 28 cm" : "8.5 × 11″");
+    out += lab(x + (sheet[0] * s) / 2, en ? "Letter sheet" : "Hoja carta", inch ? "8.5 × 11″" : "21.6 × 27.9 cm");
     x += sheet[0] * s + gap * s;
     // celular
-    out += `<rect x="${f1(x)}" y="${f1(base - phone[1] * s)}" width="${f1(phone[0] * s)}" height="${f1(phone[1] * s)}" rx="${f1(0.4 * s)}" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-opacity=".7" stroke-width="1.5"/>
-      <rect x="${f1(x + 0.18 * s)}" y="${f1(base - phone[1] * s + 0.35 * s)}" width="${f1((phone[0] - 0.36) * s)}" height="${f1((phone[1] - 0.7) * s)}" rx="${f1(0.2 * s)}" fill="currentColor" fill-opacity=".14"/>`;
-    out += lab(x + (phone[0] * s) / 2, en ? "Phone" : "Celular", cm ? "8 × 16 cm" : "3 × 6.2″");
+    out += `<rect x="${f1(x)}" y="${f1(base - phone[1] * s)}" width="${f1(phone[0] * s)}" height="${f1(phone[1] * s)}" rx="${f1(1 * s)}" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-opacity=".7" stroke-width="1.5"/>
+      <rect x="${f1(x + 0.45 * s)}" y="${f1(base - phone[1] * s + 0.9 * s)}" width="${f1((phone[0] - 0.9) * s)}" height="${f1((phone[1] - 1.8) * s)}" rx="${f1(0.5 * s)}" fill="currentColor" fill-opacity=".14"/>`;
+    out += lab(x + (phone[0] * s) / 2, en ? "Phone" : "Celular", inch ? "3 × 6.1″" : "7.5 × 15.5 cm");
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${VBW} ${VBH}" font-family="Manrope,Arial,sans-serif" role="img" aria-label="${en ? "Size comparison" : "Comparación de tamaño"}">${out}</svg>`;
   }
 

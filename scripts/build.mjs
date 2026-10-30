@@ -136,7 +136,7 @@ ${graph ? ldScript(graph) : ""}
 }
 
 /* ---------- bloques reutilizables ---------- */
-const sizeSpan = p => { const a = p.sizes[0], b = p.sizes[p.sizes.length - 1]; return [`${a[0]}×${a[1]}″`, `${b[0]}×${b[1]}″`]; };
+const sizeSpan = p => { const a = p.sizes[0], b = p.sizes[p.sizes.length - 1]; return [`${a[0]}×${a[1]}`, `${b[0]}×${b[1]} cm`]; };
 const productMini = base => `<div class="mini-grid">${D.PRODUCTS.map(p => `<a class="mini-card" href="${base}${p.slug}/"><img src="${base}assets/img/${p.images[0]}.webp" alt="${esc(p.es.name)} personalizada" loading="lazy" decoding="async" width="300" height="300"><span>${esc(p.es.name)}</span></a>`).join("")}</div>`;
 const ctaBand = (base, title, text, waMsg, q) => `<div class="cta-band"><div><h2>${title}</h2><p>${text}</p></div><div class="hero-cta" style="margin:0"><a class="btn btn-ghost btn-lg" href="${base}${q || ""}#disena">Diseñar mi bolsa →</a><a class="btn btn-wa btn-lg" href="${waHref(waMsg)}" data-wa="hero" data-wa-msg="${esc(waMsg)}" target="_blank" rel="noopener">${WA_ICON} WhatsApp</a></div></div>`;
 const faqBlock = list => `<div class="faq-list" style="margin-top:1rem">${R.faq("es", list)}</div>`;
@@ -170,7 +170,7 @@ function productPages() {
     const waMsg = `¡Hola Plásticos JR! Quiero cotizar ${L.name.toLowerCase()} con mi logo.`;
     const faqs = [
       { q: `¿Cuál es el pedido mínimo de ${L.name.toLowerCase()}?`, a: `Como referencia, desde ${p.min.toLocaleString("es-CO")} unidades. El mínimo exacto depende de la medida, el calibre y la impresión; escríbenos y te lo confirmamos.` },
-      { q: `¿Qué medidas de ${L.name.toLowerCase()} fabrican?`, a: `Manejamos ${p.sizes.map(s => `${s[0]}×${s[1]}″`).join(", ")} y medidas especiales dentro del rango de 6×11 a 20×30 pulgadas.` },
+      { q: `¿Qué medidas de ${L.name.toLowerCase()} fabrican?`, a: `Manejamos ${p.sizes.map(s => `${s[0]}×${s[1]} cm`).join(", ")}. Si necesitas una bolsa más grande o con fuelle, la cotizamos como medida especial.` },
       D.FAQ[4], D.FAQ[6]
     ];
     const body = `<div class="page-grid">
@@ -179,7 +179,7 @@ function productPages() {
     <h1>${esc(L.name)} personalizada con tu logo</h1>
     <p class="lead">${esc(L.desc)}</p>
     <ul class="facts">
-      <li><b>${from} – ${to}</b><span>Medidas (pulgadas)</span></li>
+      <li><b>${from} – ${to}</b><span>Medidas estándar</span></li>
       <li><b>${p.calibres.join(" · ")}</b><span>${p.calLabel ? "Gramaje" : "Calibres"}</span></li>
       <li><b>${Math.max(...p.prints) >= 4 ? "1 a 4 tintas" : "1 a 2 tintas"}</b><span>Impresión</span></li>
       <li><b>${p.min.toLocaleString("es-CO")} und.</b><span>Mínimo de referencia</span></li>
@@ -192,7 +192,7 @@ function productPages() {
   </div>
 </div>
 ${section(`Usos ideales de la ${esc(L.name.toLowerCase())}`, `<ul>${L.uses.map(u => `<li>${esc(u)}</li>`).join("")}</ul><p><b>Material:</b> ${esc(L.material)}.</p>`)}
-${section("Medidas disponibles", `<div class="table-wrap"><table class="size-table"><thead><tr><th>Pulgadas</th><th>Centímetros</th><th></th></tr></thead><tbody>${p.sizes.map(s => `<tr><td><strong>${s[0]} × ${s[1]}″</strong></td><td>${D.inToCm(s[0])} × ${D.inToCm(s[1])} cm</td><td><a class="link-try" href="${base}?tipo=${p.id}&amp;w=${s[0]}&amp;h=${s[1]}#disena">Probar →</a></td></tr>`).join("")}</tbody></table></div><p class="hint">También fabricamos medidas especiales. Pregúntanos.</p>`)}
+${section("Medidas disponibles", `<div class="table-wrap"><table class="size-table"><thead><tr><th>Centímetros</th><th>Pulgadas</th><th></th></tr></thead><tbody>${p.sizes.map(s => `<tr><td><strong>${s[0]} × ${s[1]} cm</strong></td><td>${D.cmToIn(s[0])} × ${D.cmToIn(s[1])}″</td><td><a class="link-try" href="${base}?tipo=${p.id}&amp;w=${s[0]}&amp;h=${s[1]}#disena">Probar →</a></td></tr>`).join("")}</tbody></table></div><p class="hint">¿Necesitas una bolsa más grande o con fuelle? La cotizamos como medida especial.</p>`)}
 ${section("Colores disponibles", `<div class="swatches">${p.colors.map(k => `<span class="sw${D.COLORS[k].clear ? " clear" : ""}" style="--c:${D.COLORS[k].hex}" title="${D.COLORS[k].es}" role="img" aria-label="${D.COLORS[k].es}"></span>`).join("")}</div><p class="hint">${p.colors.map(k => D.COLORS[k].es).join(" · ")}. Impresión en tintas planas o full color según el tipo.</p>`)}
 ${section(`${esc(L.name)} con entrega en el Eje Cafetero`, `<p>Entregamos ${esc(L.name.toLowerCase())} en todo el Quindío y despachamos a Risaralda, Caldas, el Valle del Cauca, el Tolima y toda Colombia.</p><ul class="city-links">${D.CITIES.filter(c => c.featured || c.dept === "quindio").map(c => `<li><a href="${base}bolsas-plasticas-${c.slug}/">${esc(c.name)}</a></li>`).join("")}</ul>`)}
 ${section("Preguntas frecuentes", faqBlock(faqs))}
@@ -233,7 +233,7 @@ function cityPages() {
     <ul class="facts">
       <li><b>${esc(eta)}</b><span>Entrega en ${esc(c.name)}</span></li>
       <li><b>${dist}</b><span>${c.km ? "Desde Armenia, Quindío" : "Despachamos desde aquí"}</span></li>
-      <li><b>6×11 – 20×30″</b><span>Medidas disponibles</span></li>
+      <li><b>6×11 – 20×30 cm</b><span>Línea estándar de medidas</span></li>
       <li><b>1 a 4 tintas</b><span>Impresión de tu logo</span></li>
     </ul>
     <div class="hero-cta"><a class="btn btn-primary btn-lg" href="${base}?ciudad=${c.slug}#disena">Diseñar mi bolsa →</a><a class="btn btn-wa btn-lg" href="${waHref(waMsg)}" data-wa="hero" data-wa-msg="${esc(waMsg)}" target="_blank" rel="noopener">${WA_ICON} Cotizar en ${esc(c.name)}</a></div>

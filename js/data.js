@@ -1,7 +1,7 @@
 /* ==========================================================================
    Plásticos JR — CATÁLOGO, MEDIDAS, COBERTURA Y PREGUNTAS (editar aquí)
    Lo usan el navegador (diseñador, asistente, idioma EN) y el generador de
-   páginas SEO (scripts/build.mjs). Medidas en PULGADAS: ancho × alto.
+   páginas SEO (scripts/build.mjs). Medidas en CENTÍMETROS: ancho × alto.
    ========================================================================== */
 window.BV_DATA = (function () {
   "use strict";
@@ -66,7 +66,7 @@ window.BV_DATA = (function () {
             desc: "T-shirt style carrier bag in high or low-density polyethylene. Strong, affordable and ready for your logo in one or more colors.",
             uses: ["Supermarkets and grocery stores", "Pharmacies and shops", "Delivery and restaurants", "Shoe stores"],
             material: "High (HDPE) or low-density (LDPE) polyethylene" },
-      sizes: [[8, 14], [10, 16], [12, 18], [14, 22], [16, 24], [18, 26], [20, 30]], def: [12, 18],
+      sizes: [[12, 20], [14, 22], [15, 25], [17, 27], [18, 28], [20, 30]], def: [17, 27],
       calibres: ["1.5", "2", "2.5", "3"], defCal: "2",
       colors: ["blanco", "natural", "negro", "amarillo", "rojo", "azul", "verde", "fucsia", "naranja"],
       prints: [0, 1, 2, 3, 4], min: 1000,
@@ -82,7 +82,7 @@ window.BV_DATA = (function () {
             desc: "Bag with a die-cut handle, optional handle reinforcement and gusset. The favorite of boutiques, clothing, shoe and cosmetics stores.",
             uses: ["Clothing and boutiques", "Shoes and accessories", "Cosmetics and fragrance", "Tech and phone stores"],
             material: "Low-density polyethylene (LDPE), matte or gloss" },
-      sizes: [[6, 11], [8, 12], [10, 14], [12, 16], [14, 18], [16, 20], [18, 24], [20, 30]], def: [12, 16],
+      sizes: [[6, 11], [8, 12], [10, 15], [12, 18], [15, 20], [16, 24], [18, 26], [20, 30]], def: [16, 24],
       calibres: ["2", "2.5", "3", "4"], defCal: "3",
       colors: ["blanco", "negro", "fucsia", "rosado", "rojo", "azul", "celeste", "amarillo", "naranja", "verde", "morado", "natural"],
       prints: [0, 1, 2, 3, 4], min: 1000,
@@ -98,7 +98,7 @@ window.BV_DATA = (function () {
             desc: "Bag with a heat-sealed soft-loop handle, comfortable to carry and designed to be reused. A premium look for your brand.",
             uses: ["Shoes and leather goods", "Boutiques and gift shops", "Events and trade shows", "Corporate brands"],
             material: "Heavy-gauge low-density polyethylene (LDPE)" },
-      sizes: [[10, 14], [12, 16], [14, 18], [16, 20], [18, 24], [20, 30]], def: [14, 18],
+      sizes: [[12, 18], [15, 20], [16, 24], [18, 26], [20, 30]], def: [18, 26],
       calibres: ["3", "3.5", "4"], defCal: "3.5",
       colors: ["blanco", "negro", "fucsia", "rosado", "rojo", "azul", "amarillo", "verde", "morado", "natural"],
       prints: [0, 1, 2, 3, 4], min: 1000, reusable: true,
@@ -114,7 +114,7 @@ window.BV_DATA = (function () {
             desc: "Non-woven polypropylene tote with sewn or heat-sealed handles. Reusable, lightweight and perfect as a promotional gift or shopping bag.",
             uses: ["Events, fairs and conferences", "Brands and campaigns", "Supermarkets (reusable)", "Health food and agro stores"],
             material: "Non-woven polypropylene fabric (60–80 g/m²)" },
-      sizes: [[10, 12], [12, 14], [14, 16], [16, 18], [18, 20]], def: [14, 16],
+      sizes: [[15, 20], [18, 24], [20, 25], [20, 30]], def: [20, 30],
       calibres: ["60 g", "70 g", "80 g"], defCal: "70 g", calLabel: "gramaje",
       colors: ["negro", "blanco", "rojo", "fucsia", "rosado", "azul", "verde", "limon", "amarillo", "naranja", "beige", "cafe", "morado"],
       prints: [0, 1, 2, 4], min: 200, reusable: true,
@@ -130,7 +130,7 @@ window.BV_DATA = (function () {
             desc: "Kraft or coated paper bag with matte or gloss lamination, cord handles and top reinforcement. Special finishes like gold or silver foil.",
             uses: ["Jewelry and watch stores", "Premium fashion", "Gift shops", "Cosmetics and spa"],
             material: "Kraft or coated paper (150–250 gsm)" },
-      sizes: [[8, 10], [10, 12], [12, 14], [14, 16], [16, 18]], def: [12, 14],
+      sizes: [[10, 15], [12, 18], [15, 20], [18, 24], [20, 30]], def: [15, 20],
       calibres: ["150 g", "200 g", "250 g"], defCal: "200 g", calLabel: "gramaje",
       colors: ["blanco", "kraft", "negro", "rojo", "fucsia", "azul", "rosado"],
       prints: [0, 1, 2, 4], min: 300, reusable: true,
@@ -146,7 +146,7 @@ window.BV_DATA = (function () {
             desc: "Die-cut, pre-perforated bags on a roll, printed with your brand, plus a counter dispenser. Speeds up service in high-traffic stores.",
             uses: ["Clothing and shoe stores", "Chains and franchises", "High-traffic checkouts", "Warehouses and shipping"],
             material: "Low-density polyethylene (LDPE)" },
-      sizes: [[10, 14], [12, 16], [14, 18], [16, 20], [18, 24]], def: [14, 18],
+      sizes: [[12, 18], [15, 20], [16, 24], [18, 26], [20, 30]], def: [16, 24],
       calibres: ["2", "2.5", "3"], defCal: "2.5",
       colors: ["blanco", "natural", "negro", "fucsia", "azul", "rojo", "amarillo"],
       prints: [0, 1, 2, 3, 4], min: 1000,
@@ -162,7 +162,7 @@ window.BV_DATA = (function () {
             desc: "Flat bags on a roll or in packs, clear or natural, for produce, meat, grains and bakery. Food-grade, plain or printed.",
             uses: ["Produce and supermarkets", "Butchers and poultry", "Grocers and bakeries", "Farmers' markets"],
             material: "Food-grade high or low-density polyethylene" },
-      sizes: [[6, 11], [8, 12], [10, 14], [12, 16], [14, 18]], def: [10, 14],
+      sizes: [[6, 11], [8, 12], [10, 15], [12, 18], [15, 20], [20, 30]], def: [10, 15],
       calibres: ["0.8", "1", "1.5", "2"], defCal: "1",
       colors: ["natural", "blanco", "amarillo", "rojo", "verde"],
       prints: [0, 1, 2], min: 1000,
@@ -178,7 +178,7 @@ window.BV_DATA = (function () {
             desc: "Trash bags in the waste color code (white, black and green), heavy-duty industrial bags and polyethylene film on rolls for packaging, construction and agriculture.",
             uses: ["Residential complexes and companies", "Construction sites", "Agro and coffee farms", "Warehouses and packing"],
             material: "Virgin or recycled low-density polyethylene" },
-      sizes: [[18, 24], [20, 30]], def: [20, 30],
+      sizes: [[15, 20], [18, 26], [20, 30]], def: [20, 30],
       calibres: ["1.5", "2", "3", "4", "6"], defCal: "2",
       colors: ["negro", "blanco", "verde", "natural", "gris", "rojo"],
       prints: [0, 1, 2], min: 1000,
@@ -186,17 +186,18 @@ window.BV_DATA = (function () {
     }
   ];
 
-  /* ---------- Guía de medidas (pulgadas) ---------- */
+  /* ---------- Guía de medidas (centímetros) ----------
+     Línea estándar de 6 × 11 a 20 × 30 cm; lo demás se cotiza como medida especial. */
   const SIZE_RANGE = { minW: 6, maxW: 20, minH: 11, maxH: 30 };
   const SIZE_GUIDE = [
-    { w: 6,  h: 11, es: "Joyería, accesorios, droguería", en: "Jewelry, accessories, pharmacy" },
-    { w: 8,  h: 12, es: "Cosméticos, celulares, farmacia", en: "Cosmetics, phones, pharmacy" },
-    { w: 10, h: 14, es: "Prenda doblada, libros, panadería", en: "Folded garment, books, bakery" },
-    { w: 12, h: 16, es: "Ropa, perfumería, domicilios", en: "Clothing, fragrance, delivery" },
-    { w: 14, h: 18, es: "Ropa, calzado infantil, mercado", en: "Clothing, kids' shoes, groceries" },
-    { w: 16, h: 20, es: "Caja de zapatos, mercado", en: "Shoe box, groceries" },
-    { w: 18, h: 24, es: "Chaquetas, cajas grandes", en: "Jackets, large boxes" },
-    { w: 20, h: 30, es: "Cobijas, artículos grandes, industrial", en: "Blankets, bulky items, industrial" }
+    { w: 6,  h: 11, es: "Joyería, bisutería, accesorios", en: "Jewelry, trinkets, accessories" },
+    { w: 8,  h: 12, es: "Celulares, accesorios, cosméticos pequeños", en: "Phones, accessories, small cosmetics" },
+    { w: 10, h: 15, es: "Droguería, panadería, detalles", en: "Pharmacy, bakery, small gifts" },
+    { w: 12, h: 18, es: "Cosméticos, ropa interior, accesorios", en: "Cosmetics, underwear, accessories" },
+    { w: 15, h: 20, es: "Perfumería, comidas, libros pequeños", en: "Fragrance, take-out, small books" },
+    { w: 16, h: 24, es: "Camisetas dobladas, regalos", en: "Folded T-shirts, gifts" },
+    { w: 18, h: 26, es: "Ropa doblada, droguería, domicilios", en: "Folded clothing, pharmacy, delivery" },
+    { w: 20, h: 30, es: "Ropa, calzado infantil, mercado liviano", en: "Clothing, kids' shoes, light groceries" }
   ];
 
   const QUANTITIES = [200, 500, 1000, 2000, 3000, 5000, 10000, 20000, 50000];
@@ -324,8 +325,8 @@ window.BV_DATA = (function () {
       a: { es: "Depende del tipo de bolsa y de la impresión. Como referencia, las bolsas plásticas impresas se producen desde 1.000 unidades, y las ecológicas TNT y de papel desde 200–300 unidades. Escríbenos y te confirmamos el mínimo exacto para tu pedido.",
            en: "It depends on the bag type and printing. As a guide, printed plastic bags start at 1,000 units, and non-woven or paper bags at 200–300 units. Message us and we'll confirm the exact minimum for your order." } },
     { q: { es: "¿Qué medidas manejan?", en: "Which sizes do you make?" },
-      a: { es: "Fabricamos desde 6 × 11 hasta 20 × 30 pulgadas (aprox. 15 × 28 cm hasta 51 × 76 cm), además de medidas especiales. En el diseñador puedes probar cualquier medida y ver qué cabe en tu bolsa.",
-           en: "From 6 × 11 up to 20 × 30 inches (about 15 × 28 cm to 51 × 76 cm), plus custom sizes. In the designer you can try any size and see what fits in your bag." } },
+      a: { es: "Nuestra línea estándar va desde 6 × 11 hasta 20 × 30 cm (ancho × alto). Si necesitas una bolsa más grande o con fuelle, la cotizamos como medida especial. En el diseñador puedes probar tu medida y compararla a tamaño real.",
+           en: "Our standard line goes from 6 × 11 up to 20 × 30 cm (width × height). Need a larger bag or a gusset? We quote it as a custom size. In the designer you can try your size and compare it at real scale." } },
     { q: { es: "¿Cuánto tarda mi pedido?", en: "How long does my order take?" },
       a: { es: "La producción toma aproximadamente de 8 a 15 días hábiles después de aprobar el boceto, según el tipo y la cantidad. En el Quindío entregamos directamente en 24–48 horas hábiles; al resto del Eje Cafetero, de 1 a 2 días, y a toda Colombia por transportadora.",
            en: "Production takes about 8–15 business days after artwork approval, depending on type and quantity. In Quindío we deliver directly within 1–2 business days; elsewhere in the Coffee Region in 1–2 days, and nationwide by courier." } },
@@ -391,11 +392,11 @@ window.BV_DATA = (function () {
   };
 
   function product(id) { return PRODUCTS.find(p => p.id === id) || PRODUCTS[0]; }
-  function inToCm(v) { return Math.round(v * 2.54); }
+  function cmToIn(v) { return Math.round((v / 2.54) * 10) / 10; }
   function cityBySlug(slug) { return CITIES.find(c => c.slug === slug); }
   function dept(id) { return DEPARTMENTS.find(d => d.id === id); }
 
   return { COLORS, INKS, PRINT, PRODUCTS, SIZE_RANGE, SIZE_GUIDE, QUANTITIES, ZONES, PRODUCTION,
            DEPARTMENTS, CITIES, OTHER_REGIONS, SECTORS, FAQ, GALLERY, COORDS,
-           product, inToCm, cityBySlug, dept };
+           product, cmToIn, cityBySlug, dept };
 })();
