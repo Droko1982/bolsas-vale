@@ -1,0 +1,16 @@
+{
+  "name": "Plásticos JR · Bolsas personalizadas",
+  "short_name": "Plásticos JR",
+  "description": "Bolsas plásticas personalizadas con tu logo. Eje Cafetero y toda Colombia.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F6F7FB",
+  "theme_color": "#E0177A",
+  "lang": "es-CO",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
